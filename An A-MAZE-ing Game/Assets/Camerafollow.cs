@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class Camerafollow : MonoBehaviour
 {
-    public Transform Obama;
+    public Transform followTransform;
 
-     void FixedUpdate ()
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        transform.position = new Vector3(Obama.position.x, Obama.position.y, transform.position.z);
+
     }
 
-    private Vector2 velocity;
 
-    /*void Start()
+
+    void FixedUpdate()
     {
-        
+        this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, this.transform.position.z);
     }
 
-    void Update()
-    {
-        var obamaPosition = Obama.position;
-        obamaPosition.z = transform.position.z;
-
-        var target = Vector2.SmoothDamp(transform.position, obamaPosition, ref velocity, 0.5f);
-        transform.position = target;
-    }
-    */
 }

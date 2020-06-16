@@ -17,11 +17,12 @@ public class LookAtMouse : MonoBehaviour
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         print(dir);
-        /*var mousePos = Input.mousePosition;
-        var MousePosworld = Camera.main.ScreenToWorldPoint(mousePos);
 
-        var timToMousePosition = MousePosworld = transform.position;
-        timToMousePosition.z = 0;
-        transform.right = timToMousePosition;*/
+        //var mousePos = Input.mousePosition;
+        //var MousePosworld = Camera.main.ScreenToWorldPoint(mousePos);
+
+        //var timToMousePosition = MousePosworld = transform.position;
+        //timToMousePosition.z = 0;
+        //transform.right = timToMousePosition;
     }
 }

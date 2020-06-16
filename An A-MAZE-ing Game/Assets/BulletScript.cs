@@ -5,22 +5,32 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
 
-    public float velX = 5f;
-    float velY = 0f;
-
-    Rigidbody2D bullet;
+    public GameObject bulletPrefab;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        bullet = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        bullet.velocity = new Vector2(velX, velY);
+        if(Input.GetMouseButtonDown(0))
+        {
+            //Throw a Knife
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+
+            Rigidbody2D rigibody = bullet.GetComponent<Rigidbody2D>();
+
+            rigibody.velocity = Vector2.up * 10;
+
+            Destroy(bullet, 10);
+        }
 
     }
+
+    
 }

@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     public float speed = 10;
 
 
-   /* public GameObject bulletright, bulletleft;
-    Vector2 bulletPos;
-    public float fireRate = 0.5f;
-    float nextFire = 0.5f;
-    */
+  
 
 
 
@@ -36,19 +32,7 @@ public class Movement : MonoBehaviour
         rigidbody.MovePosition(position);
 
 
-       /* if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
-        {
-            fire();
-        }
-
-
-            void fire()
-            {
-                bulletPos = transform.position;
-                bulletPos += new Vector2 (+1.2f, 0.27f);
-                Instantiate(bulletright, bulletPos, Quaternion.identity);
-            }
-        */
+       
     }
         
 
