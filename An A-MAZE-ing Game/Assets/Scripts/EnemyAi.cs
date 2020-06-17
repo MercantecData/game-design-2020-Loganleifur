@@ -52,8 +52,10 @@ public class EnemyAi : MonoBehaviour
             }
         }
         else if (currentState == "Pursuit"){
+
             print("GET EM!");
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            ZombieSound.playSound();
 
             if(!TargetAquired())
             {
