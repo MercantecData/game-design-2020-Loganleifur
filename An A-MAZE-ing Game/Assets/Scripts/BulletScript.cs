@@ -18,7 +18,7 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButton("fire1") == true)
         {
             //Throw a Knife
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);

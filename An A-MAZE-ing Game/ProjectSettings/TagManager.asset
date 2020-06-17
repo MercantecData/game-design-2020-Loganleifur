@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Front
+  - New tag
+  - player
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - Front Layer
+  - VisionBlocker
   - 
   - 
   - 
