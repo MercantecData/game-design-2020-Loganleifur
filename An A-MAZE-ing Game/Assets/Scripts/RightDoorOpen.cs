@@ -2,42 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageDetector : MonoBehaviour
+public class RightDoorOpen : MonoBehaviour
 {
-    public float HP = 100;
 
     public Animator anim;
     public bool gotHit = false;
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        
+
         if (col.gameObject.name == "Sword")
         {
-            
             gotHit = true;
         }
     }
 
+    // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        
-        
         if(gotHit == true)
         {
-            HP -= 50;
-            anim.Play("EnemyTakesDamage");
+            anim.Play("Open2");
             gotHit = false;
-            
-        }
-        if (HP <= 0)
-        {
-            Destroy(this.gameObject);
         }
     }
 }

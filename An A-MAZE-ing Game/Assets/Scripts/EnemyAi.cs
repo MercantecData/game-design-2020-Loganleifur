@@ -20,6 +20,8 @@ public class EnemyAi : MonoBehaviour
 
     public LayerMask Mask;
 
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -88,5 +90,15 @@ public class EnemyAi : MonoBehaviour
             
         }
         return inRange && inVision;
+    }
+
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        print("sup dude");
+        if (other.gameObject.tag == "Sword")
+        {
+            Vector2 difference = (transform.position - other.transform.position).normalized;
+            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        }
     }
 }
