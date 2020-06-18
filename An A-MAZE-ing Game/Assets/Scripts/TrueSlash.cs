@@ -9,8 +9,8 @@ public class TrueSlash : MonoBehaviour
     {
         if(col.gameObject.name == "Enemy")
         {
-
-        Destroy(col.gameObject);
+            print("Bababoi");
+        //Destroy(col.gameObject);
         }
     }
 }

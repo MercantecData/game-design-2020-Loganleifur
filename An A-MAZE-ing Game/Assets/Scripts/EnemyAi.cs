@@ -8,10 +8,11 @@ public class EnemyAi : MonoBehaviour
 
     public float speed = 5;
     public float range = 15;
+    public float hp = 100;
 
     private Transform target;
 
-
+    public Animator anim;
 
     private Transform nextWaypoint;
     public Transform waypoint1;
@@ -20,24 +21,24 @@ public class EnemyAi : MonoBehaviour
     public LayerMask Mask;
 
     
-
     // Start is called before the first frame update
     void Start()
     {
         nextWaypoint = waypoint1;
         target = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentState == "Patrol")
+        if (currentState == "Patrol")
         {
-            Vector2 nextPosition = Vector2.MoveTowards(transform.position, nextWaypoint.position, Time.deltaTime*speed);
+            Vector2 nextPosition = Vector2.MoveTowards(transform.position, nextWaypoint.position, Time.deltaTime * speed);
             transform.position = nextPosition;
-            if(transform.position == nextWaypoint.position)
+            if (transform.position == nextWaypoint.position)
             {
-                if(nextWaypoint == waypoint1)
+                if (nextWaypoint == waypoint1)
                 {
                     nextWaypoint = waypoint2;
                 }
@@ -46,22 +47,25 @@ public class EnemyAi : MonoBehaviour
                     nextWaypoint = waypoint1;
                 }
             }
-            if(TargetAquired())
+            if (TargetAquired())
             {
                 currentState = "Pursuit";
             }
         }
-        else if (currentState == "Pursuit"){
+        else if (currentState == "Pursuit") {
 
-            print("GET EM!");
+
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            ZombieSound.playSound();
+            //ZombieSound.playSound();
 
-            if(!TargetAquired())
+            if (!TargetAquired())
             {
                 currentState = "Patrol";
             }
         }
+       
+           
+
     }
 
     bool TargetAquired()

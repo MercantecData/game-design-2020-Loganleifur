@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3157693165469254978}
   - component: {fileID: 3157693165469254981}
   m_Layer: 0
-  m_Name: blockades
+  m_Name: doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3157693166437768773}
   - component: {fileID: 3157693166437768772}
   m_Layer: 0
-  m_Name: Doors
+  m_Name: GridDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
