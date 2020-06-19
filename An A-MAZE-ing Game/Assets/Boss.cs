@@ -2,28 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStare : MonoBehaviour
+public class Boss : MonoBehaviour
 {
 
-    public Transform target;
+    private string currentState = "Patrol";
+
+    public float speed = 5;
+    public float range = 15;
+
+
+    private Transform target;
+
+    public Animator anim;
+
+    private Transform nextWaypoint;
+
+    public Transform waypoint1;
+    public Transform waypoint2;
+    public Transform waypoint3;
+    public Transform waypoint4;
+
+    public LayerMask Mask;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        nextWaypoint = waypoint1;
+        target = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 targ = target.position;
-        targ.z = 0f;
+        if (currentState == "Patrol")
+        {
+            Vector2 nextPosition = Vector2.MoveTowards(transform.position, nextWaypoint.position, Time.deltaTime * speed);
+            transform.position = nextPosition;
 
-        Vector3 objectPos = transform.position;
-        targ.x = targ.x - objectPos.x;
-        targ.y = targ.y - objectPos.y;
+            if (transform.position == nextWaypoint.position)
+            {
+                if (nextWaypoint == waypoint1)
+                {
+                    nextWaypoint = waypoint2;
+                }
 
-        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                else if (nextWaypoint == waypoint2)
+                {
+                    nextWaypoint = waypoint3;
+                }
+
+                else if (nextWaypoint == waypoint3)
+                {
+                    nextWaypoint = waypoint4;
+                }
+
+                else if (nextWaypoint == waypoint4)
+                {
+                    nextWaypoint = waypoint1;
+                }
+
+            }
+        }
+
+
+
     }
+
+    
+
 }

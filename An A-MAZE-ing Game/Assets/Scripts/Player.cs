@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float speed = 10;
     public float HP = 100;
     public bool gotHitByZombie = false;
+    public bool gotHitByBullet = false;
 
     public Animator anim;
 
@@ -15,13 +16,19 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-       
+        
         if (col.gameObject.name == "Enemy")
         {
             
             gotHitByZombie = true;
             /*Vector2 difference = (transform.position - col.gameObject.transform.position).normalized;
             transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);*/
+        }
+
+        if (col.gameObject.name == "Bullet" || col.gameObject.name == "Bullet(Clone)")
+        {
+            
+            gotHitByBullet = true;
         }
     }
 
@@ -54,7 +61,15 @@ public class Player : MonoBehaviour
             gotHitByZombie = false;
         }
 
-        if(HP <= 0)
+        if (gotHitByBullet == true)
+        {
+
+            HP -= 25;
+            anim.Play("Damage");
+            gotHitByBullet = false;
+        }
+
+        if (HP <= 0)
         {
             
             gameOver.SetActive(true);
