@@ -8,7 +8,7 @@ public class EnemyAi : MonoBehaviour
 
     public float speed = 5;
     public float range = 15;
-    public float hp = 100;
+    
 
     private Transform target;
 
@@ -94,7 +94,7 @@ public class EnemyAi : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        print("sup dude");
+        
         if (other.gameObject.tag == "Sword")
         {
             Vector2 difference = (transform.position - other.transform.position).normalized;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageDetector : MonoBehaviour
 {
-    public float HP = 100;
+    public float HP = 250;
 
     public Animator anim;
     public bool gotHit = false;
@@ -52,8 +52,9 @@ public class DamageDetector : MonoBehaviour
                 Victory.SetActive(true);
                 No = GameObject.Find("player");
                 Destroy(No);
-                Destroy(this.gameObject);
+                
             }
+            Destroy(this.gameObject);
         }
     }
 }
