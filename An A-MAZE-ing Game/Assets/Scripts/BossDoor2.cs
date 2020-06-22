@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossDoor2 : MonoBehaviour
 {
+    public Animator anim;
 
     [SerializeField] private Key.KeyType keyType;
 
@@ -12,8 +13,11 @@ public class BossDoor2 : MonoBehaviour
         return keyType;
     }
 
+  
+
     public void OpenDoor()
     {
-        gameObject.SetActive(false);
+        anim = GetComponent<Animator>();
+        anim.Play("BossOpenLeft");
     }
 }

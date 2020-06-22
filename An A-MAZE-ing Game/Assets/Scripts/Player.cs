@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
         if (gotHitByZombie == true)
         {
-            
+           SoundManager.PlaySound("PlayerDamage");
             HP -= 20;
             anim.Play("Damage");
             gotHitByZombie = false;
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
         if (gotHitByBullet == true)
         {
-
+            SoundManager.PlaySound("PlayerDamage");
             HP -= 25;
             anim.Play("Damage");
             gotHitByBullet = false;
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
         if (HP <= 0)
         {
-            
+            SoundManager.PlaySound("GameOver");
             gameOver.SetActive(true);
             Destroy(this.gameObject);
         }
@@ -86,7 +86,9 @@ public class Player : MonoBehaviour
 
        
     }
-        
+
+    
+
 
 }
 

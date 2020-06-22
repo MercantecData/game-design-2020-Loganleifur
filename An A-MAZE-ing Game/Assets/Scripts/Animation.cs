@@ -19,6 +19,7 @@ public class Animation : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             anim.Play("Slash");
+            SoundManager.PlaySound("Swing");
         }
     }
 }

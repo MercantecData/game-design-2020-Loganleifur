@@ -51,6 +51,7 @@ public class EnemyAi : MonoBehaviour
             }
             if (TargetAquired())
             {
+                SoundManager.PlaySound("ZombieAttack");
                 currentState = "Pursuit";
             }
         }
@@ -97,6 +98,7 @@ public class EnemyAi : MonoBehaviour
         
         if (other.gameObject.tag == "Sword")
         {
+            SoundManager.PlaySound("EnemyDamage");
             Vector2 difference = (transform.position - other.transform.position).normalized;
             transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
         }

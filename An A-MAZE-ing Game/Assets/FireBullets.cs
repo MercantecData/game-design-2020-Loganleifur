@@ -5,6 +5,9 @@ using UnityEngine;
 public class FireBullets : MonoBehaviour
 {
 
+    public bool secondPhase = true;
+    
+
 
     [SerializeField]
     private int bulletsAmount = 10;
@@ -17,13 +20,15 @@ public class FireBullets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Fire", 0f, 2f);    
+        InvokeRepeating("Fire", 0f, 2f);
+        
     }
 
     // Update is called once per frame
-
+    
     private void Fire()
     {
+        SoundManager.PlaySound("BossFire");
         float angleStep = (endAngle - startAngle) / bulletsAmount;
         float angle = startAngle;
 
@@ -47,6 +52,7 @@ public class FireBullets : MonoBehaviour
         }
     }
 
+    
     void Update()
     {
         

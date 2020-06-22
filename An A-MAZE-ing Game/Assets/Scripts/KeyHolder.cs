@@ -14,7 +14,7 @@ public class KeyHolder : MonoBehaviour
 
     public void AddKey(Key.KeyType keyType)
     {
-        print("added: " + keyType);
+        
         keyList.Add(keyType);
     }
 
@@ -30,25 +30,41 @@ public class KeyHolder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        print("hi");
-        Key key = collider.GetComponent<Key>();
-        if(key != null)
-        {
-            AddKey(key.GetKeyType());
-            Destroy(key.gameObject);
-        }
+        
 
-        BossDoor1 bossDoor = collider.GetComponent<BossDoor1>();
-        if(bossDoor != null)
-        {
-            print("keytime");
+            
+            Key key = collider.GetComponent<Key>();
+                if(key != null)
+                {
+                    AddKey(key.GetKeyType());
+                    Destroy(key.gameObject);
+                }
+            BossDoor2 bossDoor2 = collider.GetComponent<BossDoor2>();
+            if (bossDoor2 != null)
+            {
 
-            if(ContainsKey(bossDoor.GetKeyType())) {
-                //WE got the KEY BOIS
+
+                if (ContainsKey(bossDoor2.GetKeyType()))
+                {
+
+                    //RemoveKey(bossDoor.GetKeyType());
+                    bossDoor2.OpenDoor();
+                }
+            }
+
+            BossDoor1 bossDoor = collider.GetComponent<BossDoor1>();
+            if(bossDoor != null)
+            {
+            
+
+                if(ContainsKey(bossDoor.GetKeyType()))
+                {
+                
                 //RemoveKey(bossDoor.GetKeyType());
                 bossDoor.OpenDoor();
+                }
             }
-        }
+        
     }
 
     

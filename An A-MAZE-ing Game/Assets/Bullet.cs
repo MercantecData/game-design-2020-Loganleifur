@@ -8,10 +8,16 @@ public class Bullet : MonoBehaviour
 
     private Vector2 moveDirection;
     private float moveSpeed;
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.name == "wall")
         {
+            Invoke("Destroy", 0f);
+        }
+        if(col.gameObject.name == "player")
+        {
+            Player player = col.GetComponent<Player>();
+            player.gotHitByBullet = true;
             Invoke("Destroy", 0f);
         }
         if(col.gameObject.name != "Boss")
@@ -40,13 +46,14 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("Destroy", 3f);
+        Invoke("Destroy", 5f);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         moveSpeed = 5f;
+        
     }
 
     // Update is called once per frame

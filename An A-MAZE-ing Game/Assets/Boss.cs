@@ -5,10 +5,11 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
 
+    public bool music = true;
     private string currentState = "Patrol";
 
     public float speed = 5;
-    public float range = 15;
+    public float range = 150;
 
 
     private Transform target;
@@ -21,6 +22,7 @@ public class Boss : MonoBehaviour
     public Transform waypoint2;
     public Transform waypoint3;
     public Transform waypoint4;
+    public Transform waypoint5;
 
     public LayerMask Mask;
 
@@ -38,6 +40,11 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(TargetAquired() == true && music == true)
+        {
+            SoundManager.PlaySound("BossBGM");
+            music = false;
+        }
         if (currentState == "Patrol")
         {
             Vector2 nextPosition = Vector2.MoveTowards(transform.position, nextWaypoint.position, Time.deltaTime * speed);
@@ -72,6 +79,28 @@ public class Boss : MonoBehaviour
 
     }
 
-    
+    bool TargetAquired()
+    {
+        GameObject targetGO = GameObject.FindGameObjectWithTag("player");
+        bool inRange = false;
+        bool inVision = false;
+
+        if (Vector2.Distance(targetGO.transform.position, transform.position) < range)
+        {
+            inRange = true;
+
+        }
+
+        var linecast = Physics2D.Linecast(transform.position, targetGO.transform.position, Mask);
+        if (linecast.transform == null)
+        {
+            inVision = true;
+
+
+        }
+        return inRange && inVision;
+    }
+
+
 
 }
