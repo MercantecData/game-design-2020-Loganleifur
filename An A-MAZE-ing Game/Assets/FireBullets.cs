@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBullets : MonoBehaviour
 {
 
-    public bool secondPhase = true;
+    public bool secondPhase = false;
 
     private float angle = 0f;
 
