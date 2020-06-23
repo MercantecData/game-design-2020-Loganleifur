@@ -5,18 +5,25 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
 
-    public bool music = true;
     private string currentState = "Patrol";
+
+    public bool music = true;
 
     public float speed = 5;
     public float range = 150;
-
+    public float HP = 1000;
+    public bool gotHit = false;
+    public bool stage3 = false;
+    public bool stage2 = false;
+    public bool Vibecheck = true;
+    
 
     private Transform target;
 
-    public Animator anim;
+    public GameObject Victory;
+    public GameObject No;
 
-    private Transform nextWaypoint;
+    public Animator anim;
 
     public Transform waypoint1;
     public Transform waypoint2;
@@ -26,7 +33,20 @@ public class Boss : MonoBehaviour
 
     public LayerMask Mask;
 
+    private Transform nextWaypoint;
 
+    private AudioSource[] allAudioSources;
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+
+        if (col.gameObject.name == "Sword")
+        {
+
+            gotHit = true;
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -35,11 +55,14 @@ public class Boss : MonoBehaviour
         nextWaypoint = waypoint1;
         target = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>();
         anim = GetComponent<Animator>();
+        Victory = GameObject.Find("HUD/Victory");
+        Victory.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(TargetAquired() == true && music == true)
         {
             SoundManager.PlaySound("BossBGM");
@@ -74,6 +97,45 @@ public class Boss : MonoBehaviour
 
             }
         }
+
+        if (gotHit == true)
+        {
+            HP -= 25;
+            anim.Play("EnemyTakesDamage");
+            gotHit = false;
+            SoundManager.PlaySound("BossDamage");
+            
+        }
+        if (HP <= 600 && Vibecheck == true)
+        {
+            stage2 = true;
+            speed = 10;
+            Vibecheck = false;
+        }
+        if (HP <= 300)
+        {
+            nextWaypoint = waypoint5;
+            stage3 = true;
+            stage2 = false;
+            
+        }
+        if (HP <= 0)
+        {
+            print("iamdead");
+                allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+                foreach (AudioSource audio in allAudioSources)
+                {
+                    audio.Stop();
+                }
+                SoundManager.PlaySound("Victory");
+                Victory.SetActive(true);
+                No = GameObject.Find("player");
+                Destroy(No);
+
+            
+            Destroy(this.gameObject);
+        }
+
 
 
 

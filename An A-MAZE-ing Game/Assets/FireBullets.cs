@@ -5,12 +5,21 @@ using UnityEngine;
 public class FireBullets : MonoBehaviour
 {
 
-    public bool secondPhase = false;
+    public bool secondPhase = true;
 
     private float angle = 0f;
 
+    public float hope = 2f;
+    private bool stage2;
+    private bool stage3;
+
+    public GameObject bossTime;
+
+
+    
+
     [SerializeField]
-    private int bulletsAmount = 10;
+    private int bulletsAmount = 8;
 
     [SerializeField]
     private float startAngle = 90f, endAngle = 270f;
@@ -20,24 +29,57 @@ public class FireBullets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Shoot", 0f, 2f);
+        InvokeRepeating("Shoot", 0f, hope);
+        bossTime = GameObject.FindGameObjectWithTag("Boss");
 
     }
+   
 
     // Update is called once per frame
 
 
     private void Shoot()
     {
-        if(secondPhase)
+
+        if (stage3)
         {
+            
+            CancelInvoke("Shoot");
+            stage2 = false;
+            InvokeRepeating("Fire2", 0f, 0.3f);
+            print("Oh yeah stage 3");
             Fire2();
+        }
+        else if (stage2)
+        {
+            print("stage 2 gang");
+            CancelInvoke("Shoot");
+            InvokeRepeating("Shoot2", 0f, 1f);
+            Fire();
         }
         else
         {
             Fire();
         }
 
+    }
+
+    private void Shoot2()
+    {
+        if (stage3)
+        {
+
+            CancelInvoke("Shoot2");
+            stage2 = false;
+            InvokeRepeating("Fire2", 0f, 0.3f);
+            print("Oh yeah stage 3");
+            Fire2();
+        }
+        else {
+
+            Fire();
+
+        }
     }
     private void Fire()
     {
@@ -99,5 +141,13 @@ public class FireBullets : MonoBehaviour
     void Update()
     {
         
+        stage2 = bossTime.GetComponent<Boss>().stage2;
+        stage3 = bossTime.GetComponent<Boss>().stage3;
+        print(stage2 + " I am stage2");
+        print(stage3 + " I am stage3");
+        if(stage3)
+        {
+            stage2 = false;
+        }
     }
 }

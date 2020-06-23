@@ -12,7 +12,7 @@ public class DamageDetector : MonoBehaviour
     public GameObject Victory;
     public GameObject No;
 
-    public string name;
+    
 
     private AudioSource[] allAudioSources;
 
@@ -29,13 +29,7 @@ public class DamageDetector : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        name = this.gameObject.name;
-        if(name == "Boss")
-        {
-            
-            Victory = GameObject.Find("HUD/Victory");
-            Victory.SetActive(false);
-        }
+        
     }
 
     void Update()
@@ -55,19 +49,7 @@ public class DamageDetector : MonoBehaviour
         }
         if (HP <= 0)
         {
-            if (name == "Boss")
-            {
-                allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
-                foreach (AudioSource audio in allAudioSources)
-                {
-                    audio.Stop();
-                }
-                SoundManager.PlaySound("Victory");
-                Victory.SetActive(true);
-                No = GameObject.Find("player");
-                Destroy(No);
-                
-            }
+            
             Destroy(this.gameObject);
         }
     }

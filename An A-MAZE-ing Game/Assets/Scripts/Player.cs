@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,7 +13,10 @@ public class Player : MonoBehaviour
 
     public Animator anim;
 
+    private AudioSource[] allAudioSources;
+
     public GameObject gameOver;
+    
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -45,6 +49,7 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         gameOver = GameObject.Find("HUD/GameOverPanel");
         gameOver.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -65,12 +70,19 @@ public class Player : MonoBehaviour
         {
             SoundManager.PlaySound("PlayerDamage");
             HP -= 25;
+            GameObject.Find("HUD/Healthbar").GetComponent<Text>().text = "HP: " + HP;
+            
             anim.Play("Damage");
             gotHitByBullet = false;
         }
 
         if (HP <= 0)
         {
+            allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            foreach (AudioSource audio in allAudioSources)
+            {
+                audio.Stop();
+            }
             SoundManager.PlaySound("GameOver");
             gameOver.SetActive(true);
             Destroy(this.gameObject);

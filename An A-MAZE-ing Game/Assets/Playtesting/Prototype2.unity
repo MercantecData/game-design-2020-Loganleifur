@@ -2891,9 +2891,11 @@ MonoBehaviour:
   music: 1
   speed: 5
   range: 150
-  HP: 600
+  HP: 1000
   gotHit: 0
+  stage3: 0
   stage2: 0
+  Vibecheck: 1
   Victory: {fileID: 897190471}
   No: {fileID: 3598644936175510748}
   anim: {fileID: 1796045842}
@@ -2982,7 +2984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondPhase: 0
-  hope: 0.25
+  hope: 2
   bossTime: {fileID: 0}
   bulletsAmount: 8
   startAngle: 0
@@ -3248,7 +3250,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.007
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -42321,7 +42323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  HP: 2000
+  HP: 200
   gotHitByZombie: 0
   gotHitByBullet: 0
   anim: {fileID: 3598644936175510750}
@@ -126494,7 +126496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 100'
+  m_Text: 'HP: 200'
 --- !u!222 &4052376218888616227
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -126515,7 +126517,7 @@ GameObject:
   - component: {fileID: 4052376218888616227}
   - component: {fileID: 4052376218888616226}
   m_Layer: 5
-  m_Name: Hp(not working)
+  m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
