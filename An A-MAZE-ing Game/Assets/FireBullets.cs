@@ -72,6 +72,7 @@ public class FireBullets : MonoBehaviour
             CancelInvoke("Shoot2");
             stage2 = false;
             InvokeRepeating("Fire2", 0f, 0.3f);
+            InvokeRepeating("BossSounds", 0f, 2f);
             print("Oh yeah stage 3");
             Fire2();
         }
@@ -80,6 +81,11 @@ public class FireBullets : MonoBehaviour
             Fire();
 
         }
+    }
+
+    private void bossSounds()
+    {
+        SoundManager.PlaySound("BossInhale");
     }
     private void Fire()
     {
