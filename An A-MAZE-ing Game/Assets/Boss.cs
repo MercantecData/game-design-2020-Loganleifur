@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     public float range = 150;
     public float HP = 1000;
     public bool gotHit = false;
+    public bool gotHitBlue = false;
     public bool stage3 = false;
     public bool stage2 = false;
     public bool Vibecheck = true;
@@ -45,6 +46,10 @@ public class Boss : MonoBehaviour
         {
 
             gotHit = true;
+        }
+        if (col.gameObject.name == "BlueSword")
+        {
+            gotHitBlue = true;
         }
     }
 
@@ -106,8 +111,17 @@ public class Boss : MonoBehaviour
             SoundManager.PlaySound("BossDamage");
             
         }
+        if (gotHitBlue == true)
+        {
+            HP -= 50;
+            anim.Play("EnemyTakesDamage");
+            gotHitBlue = false;
+            SoundManager.PlaySound("BossDamage");
+
+        }
         if (HP <= 600 && Vibecheck == true)
         {
+            anim.Play("BossInhale");
             stage2 = true;
             speed = 10;
             Vibecheck = false;
@@ -121,7 +135,7 @@ public class Boss : MonoBehaviour
         }
         if (HP <= 0)
         {
-            print("iamdead");
+            
                 allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
                 foreach (AudioSource audio in allAudioSources)
                 {

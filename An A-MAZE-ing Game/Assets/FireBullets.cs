@@ -89,7 +89,7 @@ public class FireBullets : MonoBehaviour
     }
     private void Fire()
     {
-        SoundManager.PlaySound("BossFire");
+        //SoundManager.PlaySound("BossFire");
         float angleStep = (endAngle - startAngle) / bulletsAmount;
         float angle = startAngle;
 
@@ -142,15 +142,14 @@ public class FireBullets : MonoBehaviour
         }
 
     }
-
     
+
     void Update()
     {
         
         stage2 = bossTime.GetComponent<Boss>().stage2;
         stage3 = bossTime.GetComponent<Boss>().stage3;
-        print(stage2 + " I am stage2");
-        print(stage3 + " I am stage3");
+        
         if(stage3)
         {
             stage2 = false;

@@ -8,6 +8,7 @@ public class DamageDetector : MonoBehaviour
 
     public Animator anim;
     public bool gotHit = false;
+    public bool gotHitBlue = false;
 
     public GameObject Victory;
     public GameObject No;
@@ -23,6 +24,11 @@ public class DamageDetector : MonoBehaviour
         {
             
             gotHit = true;
+        }
+        if (col.gameObject.name == "BlueSword")
+        {
+
+            gotHitBlue = true;
         }
     }
 
@@ -47,9 +53,20 @@ public class DamageDetector : MonoBehaviour
                 SoundManager.PlaySound("BossDamage");
             }
         }
+        if (gotHitBlue == true)
+        {
+            HP -= 100;
+            anim.Play("EnemyTakesDamage");
+            gotHit = false;
+            if (name == "Boss")
+            {
+
+                SoundManager.PlaySound("BossDamage");
+            }
+        }
         if (HP <= 0)
         {
-            
+            SoundManager.PlaySound("ZombieDeath");
             Destroy(this.gameObject);
         }
     }

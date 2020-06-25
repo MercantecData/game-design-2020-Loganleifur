@@ -64,7 +64,33 @@ public class KeyHolder : MonoBehaviour
                 bossDoor.OpenDoor();
                 }
             }
-        
+
+            GoldDoor goldDoor = collider.GetComponent<GoldDoor>();
+            if (goldDoor != null)
+            {
+
+
+                if (ContainsKey(goldDoor.GetKeyType()))
+                {
+
+                //RemoveKey(bossDoor.GetKeyType());
+                goldDoor.OpenDoor();
+                }
+            }
+
+            GoldDoor1 goldDoor1 = collider.GetComponent<GoldDoor1>();
+            if (goldDoor1 != null)
+            {
+
+
+                if (ContainsKey(goldDoor1.GetKeyType()))
+                {
+
+                    //RemoveKey(bossDoor.GetKeyType());
+                    goldDoor1.OpenDoor();
+                }
+            }
+
     }
 
     

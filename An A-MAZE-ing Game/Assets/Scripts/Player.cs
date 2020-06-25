@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
 
     public float speed = 10;
-    public float HP = 100;
+    public float HP = 200;
     public bool gotHitByZombie = false;
     public bool gotHitByBullet = false;
 
@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
     private AudioSource[] allAudioSources;
 
     public GameObject gameOver;
+    public GameObject blueSword;
+    public GameObject normalSword;
     
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        print(col.gameObject.name);
         
         if (col.gameObject.name == "Enemy")
         {
@@ -33,6 +36,22 @@ public class Player : MonoBehaviour
         {
             
             gotHitByBullet = true;
+        }
+        if (col.gameObject.name == "Diamond")
+        {
+
+        normalSword.SetActive(false);
+        blueSword.SetActive(true);
+        Destroy(col.gameObject);
+
+        }
+
+        if (col.gameObject.name == "Easter Egg")
+        {
+
+
+            Destroy(col.gameObject);
+            anim.Play("EasterEgg");
         }
     }
 
@@ -49,8 +68,15 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         gameOver = GameObject.Find("HUD/GameOverPanel");
         gameOver.SetActive(false);
-        
+
+        blueSword = GameObject.Find("player/BlueSword");
+        blueSword.SetActive(false);
+
+        normalSword = GameObject.Find("player/Sword");
+        normalSword.SetActive(true);
+
     }
+
 
     // Update is called once per frame
     void Update()
@@ -62,6 +88,7 @@ public class Player : MonoBehaviour
         {
            SoundManager.PlaySound("PlayerDamage");
             HP -= 20;
+            GameObject.Find("HUD/Healthbar").GetComponent<Text>().text = "HP: " + HP;
             anim.Play("Damage");
             gotHitByZombie = false;
         }
@@ -71,7 +98,7 @@ public class Player : MonoBehaviour
             SoundManager.PlaySound("PlayerDamage");
             HP -= 25;
             GameObject.Find("HUD/Healthbar").GetComponent<Text>().text = "HP: " + HP;
-            
+
             anim.Play("Damage");
             gotHitByBullet = false;
         }

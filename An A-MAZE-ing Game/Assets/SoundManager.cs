@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
 
-    public static AudioClip playerHit, PlayerLocate, Swing, Walk, GameOver, ZombieDamage, BossInhale, BossFire, Victory, BossDeath, BossDamage, BossBGM;
+    public static AudioClip playerHit, PlayerLocate, Swing, Walk, GameOver, ZombieDamage, ZombieDeath, BossInhale, BossFire, Victory, BossDeath, BossDamage, BossBGM;
     static AudioSource audioSrc;
 
     
@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
 
         ZombieDamage = Resources.Load<AudioClip>("EnemyDamage");
         PlayerLocate = Resources.Load<AudioClip>("ZombieAttack");
+        ZombieDeath = Resources.Load<AudioClip>("ZombieDeath");
 
         BossFire = Resources.Load<AudioClip>("FireBall");
         BossDeath = Resources.Load<AudioClip>("BossDeath");
@@ -56,6 +57,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "ZombieAttack":
                 audioSrc.PlayOneShot(PlayerLocate);
+                break;
+            case "ZombieDeath":
+                audioSrc.PlayOneShot(ZombieDeath);
                 break;
             case "BossBGM":
                 audioSrc.PlayOneShot(BossBGM);

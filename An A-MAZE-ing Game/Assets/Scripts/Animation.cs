@@ -21,5 +21,10 @@ public class Animation : MonoBehaviour
             anim.Play("Slash");
             SoundManager.PlaySound("Swing");
         }
+        if(Input.GetMouseButtonDown(1) && this.gameObject.name == "BlueSword")
+        {
+            anim.Play("Throw");
+            SoundManager.PlaySound("Swing");
+        }
     }
 }
