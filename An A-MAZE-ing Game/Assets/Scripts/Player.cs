@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -126,9 +127,10 @@ public class Player : MonoBehaviour
             {
                 audio.Stop();
             }
-            SoundManager.PlaySound("GameOver");
-            gameOver.SetActive(true);
-            Destroy(this.gameObject);
+            SceneManager.LoadScene(1);
+            //SoundManager.PlaySound("GameOver");
+          //gameOver.SetActive(true);
+           //Destroy(this.gameObject);
         }
         var horizontalinput = Input.GetAxis("Horizontal");
         var verticalinput = Input.GetAxis("Vertical");

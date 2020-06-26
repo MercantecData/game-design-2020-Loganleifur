@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Playtesting/Prototype2.unity
+    guid: fdfb2187f7d39974e836a70823e523d1
+  - enabled: 1
+    path: Assets/Playtesting/Gameover.unity
+    guid: 5148ef44bd139ed4bbefdefdfd4acb92
+  - enabled: 1
+    path: Assets/Playtesting/Victory.unity
+    guid: 0fa124584751bbd48aa06d87b380f481
   m_configObjects: {}

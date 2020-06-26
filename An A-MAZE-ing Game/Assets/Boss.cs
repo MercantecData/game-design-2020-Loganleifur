@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Boss : MonoBehaviour
 {
@@ -182,10 +183,7 @@ public class Boss : MonoBehaviour
                 {
                     audio.Stop();
                 }
-                SoundManager.PlaySound("Victory");
-                Victory.SetActive(true);
-                No = GameObject.Find("player");
-                Destroy(No);
+            SceneManager.LoadScene(2);
 
             
             Destroy(this.gameObject);
