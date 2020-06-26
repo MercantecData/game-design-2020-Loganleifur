@@ -10,19 +10,22 @@ public class Player : MonoBehaviour
     public float HP = 200;
     public bool gotHitByZombie = false;
     public bool gotHitByBullet = false;
+    public bool enchant = true;
 
     public Animator anim;
 
     private AudioSource[] allAudioSources;
 
     public GameObject gameOver;
+    public GameObject Lifesteal;
+    public GameObject Sharpness;
     public GameObject blueSword;
     public GameObject normalSword;
     
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        print(col.gameObject.name);
+        //print(col.gameObject.name);
         
         if (col.gameObject.name == "Enemy")
         {
@@ -53,6 +56,13 @@ public class Player : MonoBehaviour
             Destroy(col.gameObject);
             anim.Play("EasterEgg");
         }
+
+        if (col.gameObject.name == "Enchantments" && enchant == true)
+        {
+            Lifesteal.SetActive(true);
+            Sharpness.SetActive(true);
+            enchant = false;
+        }
     }
 
 
@@ -74,6 +84,12 @@ public class Player : MonoBehaviour
 
         normalSword = GameObject.Find("player/Sword");
         normalSword.SetActive(true);
+
+        Lifesteal = GameObject.Find("HUD/LifestealButton");
+        Lifesteal.SetActive(false);
+
+        Sharpness = GameObject.Find("HUD/SharpnessButton");
+        Sharpness.SetActive(false);
 
     }
 

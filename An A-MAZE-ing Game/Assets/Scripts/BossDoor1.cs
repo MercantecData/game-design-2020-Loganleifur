@@ -19,6 +19,7 @@ public class BossDoor1 : MonoBehaviour
 
     public void OpenDoor()
     {
+        SoundManager.PlaySound("DoorOpen");
         anim = GetComponent<Animator>();
         anim.Play("BossOpen");
         

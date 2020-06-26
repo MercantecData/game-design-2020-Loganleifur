@@ -91,6 +91,31 @@ public class KeyHolder : MonoBehaviour
                 }
             }
 
+            ShieldDoor shieldDoor = collider.GetComponent<ShieldDoor>();
+            if (shieldDoor != null)
+            {
+
+
+                if (ContainsKey(shieldDoor.GetKeyType()))
+                {
+
+                    //RemoveKey(bossDoor.GetKeyType());
+                    shieldDoor.OpenDoor();
+                }
+            }
+
+            ShieldDoor1 shieldDoor1 = collider.GetComponent<ShieldDoor1>();
+            if (shieldDoor1 != null)
+            {
+
+
+                if (ContainsKey(shieldDoor1.GetKeyType()))
+                {
+
+                    //RemoveKey(bossDoor.GetKeyType());
+                    shieldDoor1.OpenDoor();
+                }
+            }
     }
 
     

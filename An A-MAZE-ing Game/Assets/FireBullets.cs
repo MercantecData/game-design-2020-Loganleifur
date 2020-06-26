@@ -83,7 +83,7 @@ public class FireBullets : MonoBehaviour
         }
     }
 
-    private void bossSounds()
+    private void BossSounds()
     {
         SoundManager.PlaySound("BossInhale");
     }

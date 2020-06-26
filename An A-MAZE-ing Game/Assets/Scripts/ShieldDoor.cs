@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldDoor : MonoBehaviour
+public class ShieldDoor : MonoBehaviour
 {
     public Animator anim;
 
@@ -20,7 +20,7 @@ public class GoldDoor : MonoBehaviour
     {
         SoundManager.PlaySound("DoorOpen");
         anim = GetComponent<Animator>();
-        anim.Play("GoldOpen");
+        anim.Play("ShieldDoor");
 
     }
 }
