@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamageDetector : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class DamageDetector : MonoBehaviour
 
     public GameObject Victory;
     public GameObject No;
+    public string Enchantment;
+    public float lifesteal;
 
     
 
@@ -40,11 +43,25 @@ public class DamageDetector : MonoBehaviour
 
     void Update()
     {
-        
-        
-        if(gotHit == true)
+        Enchantment = GameObject.Find("HUD/Enchantment").GetComponent<Text>().text;
+
+        if (gotHit == true)
         {
-            HP -= 50;
+            if (Enchantment == "Enchantment: Sharpness")
+            {
+                HP -= 75;
+            }
+            if (Enchantment == "Enchantment: Lifesteal")
+            {
+                GameObject.Find("player").GetComponent<Player>().HP += 25;
+                lifesteal = GameObject.Find("player").GetComponent<Player>().HP;
+                GameObject.Find("HUD/Healthbar").GetComponent<Text>().text = "HP: " + lifesteal;
+                HP -= 50;
+            }
+            else
+            {
+                HP -= 50;
+            }
             anim.Play("EnemyTakesDamage");
             gotHit = false;
             if (name == "Boss")
@@ -55,7 +72,22 @@ public class DamageDetector : MonoBehaviour
         }
         if (gotHitBlue == true)
         {
-            HP -= 100;
+            if (Enchantment == "Enchantment: Sharpness")
+            {
+                HP -= 150;
+            }
+            if (Enchantment == "Enchantment: Lifesteal")
+            {
+                GameObject.Find("player").GetComponent<Player>().HP += 50;
+                lifesteal = GameObject.Find("player").GetComponent<Player>().HP;
+                GameObject.Find("HUD/Healthbar").GetComponent<Text>().text = "HP: " + lifesteal;
+                HP -= 100;
+            }
+            else
+            {
+                HP -= 100;
+            }
+            
             anim.Play("EnemyTakesDamage");
             gotHit = false;
             if (name == "Boss")

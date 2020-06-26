@@ -95,8 +95,16 @@ public class EnemyAi : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D other)
     {
-        
+       
+
         if (other.gameObject.tag == "Sword")
+        {
+            SoundManager.PlaySound("EnemyDamage");
+            Vector2 difference = (transform.position - other.transform.position).normalized;
+            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        }
+
+        if (other.gameObject.tag == "BlueSword")
         {
             SoundManager.PlaySound("EnemyDamage");
             Vector2 difference = (transform.position - other.transform.position).normalized;
